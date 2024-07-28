@@ -1,0 +1,52 @@
+[gd_scene load_steps=8 format=3 uid="uid://cqrrwotbfhasf"]
+
+[ext_resource type="Texture2D" uid="uid://d1tmpetcp4jre" path="res://textures/objects.png" id="1_cptjk"]
+[ext_resource type="Script" path="res://world/scripts/plant.gd" id="1_to74y"]
+[ext_resource type="PackedScene" uid="uid://b5fsl10x4vpn6" path="res://entity/scenes/hitbox.tscn" id="2_ghuwr"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e0sxy"]
+atlas = ExtResource("1_cptjk")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_aioas"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e0sxy")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_swk2m"]
+size = Vector2(10, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ylwt3"]
+size = Vector2(10, 6)
+
+[node name="plant" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_to74y")
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+y_sort_enabled = true
+sprite_frames = SubResource("SpriteFrames_aioas")
+
+[node name="hitbox" parent="." instance=ExtResource("2_ghuwr")]
+y_sort_enabled = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+shape = SubResource("RectangleShape2D_swk2m")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+y_sort_enabled = true
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 2)
+shape = SubResource("RectangleShape2D_ylwt3")
+
+[connection signal="damaged" from="hitbox" to="." method="_on_hitbox_damaged"]
