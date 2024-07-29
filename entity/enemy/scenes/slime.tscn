@@ -1,8 +1,9 @@
-[gd_scene load_steps=39 format=3 uid="uid://c8jljk23txpc3"]
+[gd_scene load_steps=41 format=3 uid="uid://c8jljk23txpc3"]
 
 [ext_resource type="Script" path="res://entity/enemy/scripts/enemy.gd" id="1_2xk30"]
 [ext_resource type="Texture2D" uid="uid://b67mlndg16uu0" path="res://textures/slime_monster_24x24/slime_monster_spritesheet.png" id="1_fsuor"]
 [ext_resource type="Script" path="res://entity/scripts/interactions.gd" id="2_3kdk7"]
+[ext_resource type="PackedScene" uid="uid://xwlsnh2l40mh" path="res://weapon/scenes/bullet.tscn" id="2_5cnq5"]
 [ext_resource type="Script" path="res://entity/states/state_machine.gd" id="3_ryr4k"]
 [ext_resource type="Script" path="res://entity/states/enemy_idle.gd" id="4_k6yh1"]
 [ext_resource type="Script" path="res://entity/states/enemy_wander.gd" id="5_5i4w1"]
@@ -11,6 +12,7 @@
 [ext_resource type="Script" path="res://entity/states/destroy.gd" id="9_hg5qp"]
 [ext_resource type="Script" path="res://entity/scripts/hitbox.gd" id="9_i7nli"]
 [ext_resource type="SpriteFrames" uid="uid://b84dgcitoqcr1" path="res://textures/smoke_animation.tres" id="10_omogu"]
+[ext_resource type="Script" path="res://weapon/scripts/gun.gd" id="12_o3j2p"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_nu5sg"]
 radius = 9.0
@@ -272,11 +274,14 @@ height = 16.0
 collision_layer = 256
 collision_mask = 16
 script = ExtResource("1_2xk30")
+bullet = ExtResource("2_5cnq5")
 
 [node name="Interactions" type="Node2D" parent="."]
 script = ExtResource("2_3kdk7")
 
 [node name="Hurtbox" parent="Interactions" instance=ExtResource("6_h76i1")]
+collision_mask = 2
+destructible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interactions/Hurtbox"]
 shape = SubResource("CircleShape2D_nu5sg")
@@ -287,6 +292,7 @@ collision_layer = 256
 collision_mask = 0
 monitoring = false
 script = ExtResource("9_i7nli")
+is_destructible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interactions/Hitbox"]
 shape = SubResource("CircleShape2D_nu5sg")
@@ -309,16 +315,16 @@ script = ExtResource("3_ryr4k")
 
 [node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("next_state")]
 script = ExtResource("4_k6yh1")
-next_state = NodePath("../Wander")
+next_state = NodePath("../Walk")
 
-[node name="Wander" type="Node" parent="StateMachine" node_paths=PackedStringArray("next_state")]
+[node name="Walk" type="Node" parent="StateMachine" node_paths=PackedStringArray("next_state")]
 script = ExtResource("5_5i4w1")
 next_state = NodePath("../Idle")
 
 [node name="Stun" type="Node" parent="StateMachine" node_paths=PackedStringArray("destroy_state", "next_state")]
 script = ExtResource("6_fy8f6")
 destroy_state = NodePath("../Destroy")
-next_state = NodePath("../Wander")
+next_state = NodePath("../Walk")
 
 [node name="Destroy" type="Node" parent="StateMachine"]
 script = ExtResource("9_hg5qp")
@@ -329,5 +335,8 @@ animation = &"smoke"
 autoplay = "reset"
 frame = 4
 frame_progress = 1.0
+
+[node name="Gun" type="Node" parent="."]
+script = ExtResource("12_o3j2p")
 
 [connection signal="animation_finished" from="DestroyEffect" to="StateMachine/Stun" method="_on_destroy_effect_animation_finished"]

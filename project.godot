@@ -67,6 +67,7 @@ secondary={
 2d_physics/layer_2="player_hurt"
 2d_physics/layer_5="walls"
 2d_physics/layer_9="enemy"
+2d_physics/layer_17="pickup"
 
 [rendering]
 

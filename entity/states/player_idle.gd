@@ -1,6 +1,5 @@
 class_name Player_Idle extends State
 @onready var walk: State = $"../Walk"
-@onready var attack: State = $"../Attack"
 
 
 #  When the player enters the state
@@ -14,7 +13,7 @@ func enter():
 func exit():
 	pass
 
-# What happens during _process()
+# If the player has a direction, then change the state to walk
 func process(_delta) -> State:
 	if entity.direction != Vector2.ZERO:
 		return walk
@@ -27,6 +26,4 @@ func physics(_delta) -> State:
 
 # What happens with input
 func handle_input(_event: InputEvent) -> State:
-	if _event.is_action_pressed("primary"):
-		return attack
 	return null

@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://rbkswynlx63e"]
+
+[ext_resource type="Script" path="res://entity/scripts/pickup.gd" id="1_fsaak"]
+[ext_resource type="Texture2D" uid="uid://rlg8wh6mj6es" path="res://textures/potion.png" id="2_blqag"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ury42"]
+radius = 6.0
+height = 16.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2xp67"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_blqag")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[node name="Pickup" type="Area2D"]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_fsaak")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_ury42")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_2xp67")

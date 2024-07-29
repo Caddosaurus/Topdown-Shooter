@@ -1,20 +1,20 @@
-[gd_scene load_steps=65 format=3 uid="uid://bm2l1758u73cd"]
+[gd_scene load_steps=60 format=3 uid="uid://bm2l1758u73cd"]
 
 [ext_resource type="Script" path="res://entity/player/scripts/player.gd" id="1_rk1e4"]
-[ext_resource type="PackedScene" uid="uid://xwlsnh2l40mh" path="res://weapon/bullet.tscn" id="2_2ncto"]
+[ext_resource type="PackedScene" uid="uid://xwlsnh2l40mh" path="res://weapon/scenes/bullet.tscn" id="2_1isew"]
 [ext_resource type="Texture2D" uid="uid://ya283tj6e3ew" path="res://textures/character.png" id="2_77bde"]
 [ext_resource type="Texture2D" uid="uid://dcjv4hht00d7s" path="res://textures/NPC_test.png" id="3_j4sv4"]
 [ext_resource type="Script" path="res://entity/player/scripts/player_camera.gd" id="3_um7xe"]
 [ext_resource type="Script" path="res://entity/states/state_machine.gd" id="4_7yx3v"]
 [ext_resource type="Script" path="res://entity/states/player_idle.gd" id="4_lcfvh"]
 [ext_resource type="Script" path="res://entity/states/player_walk.gd" id="5_b438v"]
-[ext_resource type="Script" path="res://entity/states/player_attack.gd" id="6_gn04w"]
 [ext_resource type="PackedScene" uid="uid://xqcwquepvcc1" path="res://entity/scenes/hurtbox.tscn" id="7_ykpdf"]
 [ext_resource type="Script" path="res://entity/states/stun.gd" id="8_2cbtc"]
 [ext_resource type="Script" path="res://entity/scripts/hitbox.gd" id="10_4p1tr"]
 [ext_resource type="Script" path="res://entity/states/destroy.gd" id="10_wdkdh"]
 [ext_resource type="Script" path="res://entity/scripts/interactions.gd" id="12_m3ij2"]
 [ext_resource type="SpriteFrames" uid="uid://b84dgcitoqcr1" path="res://textures/smoke_animation.tres" id="14_ar2a0"]
+[ext_resource type="PackedScene" uid="uid://cjpeaf8m18gb5" path="res://weapon/scenes/gun.tscn" id="15_42n7i"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5sf52"]
 radius = 4.0
@@ -79,53 +79,29 @@ region = Rect2(0, 32, 16, 32)
 atlas = ExtResource("3_j4sv4")
 region = Rect2(0, 64, 16, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_0ui08"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_lvxbl"]
 atlas = ExtResource("2_77bde")
-region = Rect2(144, 0, 16, 32)
+region = Rect2(0, 0, 16, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_5unkl"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_d0mkp"]
 atlas = ExtResource("2_77bde")
-region = Rect2(160, 0, 16, 32)
+region = Rect2(32, 0, 16, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_m3c3h"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_f418b"]
 atlas = ExtResource("2_77bde")
-region = Rect2(176, 0, 16, 32)
+region = Rect2(0, 32, 16, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_2dvnw"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_wngg1"]
 atlas = ExtResource("2_77bde")
-region = Rect2(192, 0, 16, 32)
+region = Rect2(32, 32, 16, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_p41h2"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_xmehv"]
 atlas = ExtResource("2_77bde")
-region = Rect2(144, 32, 16, 32)
+region = Rect2(0, 64, 16, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_y5a6b"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_kglss"]
 atlas = ExtResource("2_77bde")
-region = Rect2(160, 32, 16, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_tstex"]
-atlas = ExtResource("2_77bde")
-region = Rect2(176, 32, 16, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_fx540"]
-atlas = ExtResource("2_77bde")
-region = Rect2(192, 32, 16, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_vlmgx"]
-atlas = ExtResource("2_77bde")
-region = Rect2(144, 64, 16, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_dhaob"]
-atlas = ExtResource("2_77bde")
-region = Rect2(160, 64, 16, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_8r2bt"]
-atlas = ExtResource("2_77bde")
-region = Rect2(176, 64, 16, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_p4nyf"]
-atlas = ExtResource("2_77bde")
-region = Rect2(192, 64, 16, 32)
+region = Rect2(32, 64, 16, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0ede3"]
 atlas = ExtResource("3_j4sv4")
@@ -278,16 +254,10 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_0ui08")
+"texture": SubResource("AtlasTexture_lvxbl")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_5unkl")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_m3c3h")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_2dvnw")
+"texture": SubResource("AtlasTexture_d0mkp")
 }],
 "loop": true,
 "name": &"idle_down",
@@ -295,16 +265,10 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_p41h2")
+"texture": SubResource("AtlasTexture_f418b")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_y5a6b")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_tstex")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_fx540")
+"texture": SubResource("AtlasTexture_wngg1")
 }],
 "loop": true,
 "name": &"idle_side",
@@ -312,16 +276,10 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_vlmgx")
+"texture": SubResource("AtlasTexture_xmehv")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_dhaob")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_8r2bt")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_p4nyf")
+"texture": SubResource("AtlasTexture_kglss")
 }],
 "loop": true,
 "name": &"idle_up",
@@ -419,11 +377,15 @@ height = 16.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_62edg"]
 radius = 8.0
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sbqsd"]
+radius = 7.0
+height = 16.0
+
 [node name="player" type="CharacterBody2D"]
 collision_mask = 16
 motion_mode = 1
 script = ExtResource("1_rk1e4")
-bullet = ExtResource("2_2ncto")
+bullet = ExtResource("2_1isew")
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -434,7 +396,8 @@ shape = SubResource("CircleShape2D_5sf52")
 y_sort_enabled = true
 position = Vector2(0, -3)
 sprite_frames = SubResource("SpriteFrames_lhk07")
-animation = &"stun_side"
+animation = &"idle_down"
+autoplay = "idle_down"
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position_smoothing_enabled = true
@@ -451,10 +414,6 @@ script = ExtResource("4_lcfvh")
 script = ExtResource("5_b438v")
 move_speed = 100.0
 
-[node name="Attack" type="Node" parent="StateMachine"]
-script = ExtResource("6_gn04w")
-friction = 20.0
-
 [node name="Stun" type="Node" parent="StateMachine" node_paths=PackedStringArray("destroy_state", "next_state")]
 script = ExtResource("8_2cbtc")
 destroy_state = NodePath("../Destroy")
@@ -467,12 +426,12 @@ script = ExtResource("10_wdkdh")
 script = ExtResource("12_m3ij2")
 
 [node name="Marker2D" type="Marker2D" parent="Interactions"]
-position = Vector2(0, 10)
 
 [node name="Hitbox" type="Area2D" parent="Interactions"]
 collision_layer = 2
 collision_mask = 0
 script = ExtResource("10_4p1tr")
+is_destructible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interactions/Hitbox"]
 shape = SubResource("CapsuleShape2D_ib1yh")
@@ -481,11 +440,19 @@ shape = SubResource("CapsuleShape2D_ib1yh")
 collision_layer = 256
 collision_mask = 256
 monitoring = false
+destructible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interactions/Hurtbox"]
 position = Vector2(0, 5)
 shape = SubResource("CircleShape2D_62edg")
 debug_color = Color(0.623948, 0, 0.175822, 0.42)
+
+[node name="CollectibleHurtbox" parent="Interactions" instance=ExtResource("7_ykpdf")]
+collision_mask = 65536
+destructible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactions/CollectibleHurtbox"]
+shape = SubResource("CapsuleShape2D_sbqsd")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -498,6 +465,7 @@ text = "asdf asdf asdf "
 sprite_frames = ExtResource("14_ar2a0")
 animation = &"reset"
 
+[node name="Gun" parent="." instance=ExtResource("15_42n7i")]
+
 [connection signal="direction_changed" from="." to="Interactions" method="update_direction"]
-[connection signal="animation_looped" from="AnimatedSprite2D" to="StateMachine/Attack" method="end_attack"]
 [connection signal="damaged" from="Interactions/Hitbox" to="." method="_on_hitbox_damaged"]

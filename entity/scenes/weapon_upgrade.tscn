@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://bgx3kmeyk2cge"]
+
+[ext_resource type="Script" path="res://weapon/scripts/weapon_upgrade.gd" id="1_j55hp"]
+[ext_resource type="Texture2D" uid="uid://cbxdn5wer4a7s" path="res://textures/weapon_upgrade.png" id="2_fgybj"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_m4d3d"]
+radius = 8.0
+height = 16.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jox02"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_fgybj")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="WeaponUpgrade" type="Area2D"]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_j55hp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_m4d3d")
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_jox02")

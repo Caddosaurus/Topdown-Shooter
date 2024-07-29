@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://xwlsnh2l40mh"]
 
-[ext_resource type="Script" path="res://weapon/bullet.gd" id="1_kytww"]
-[ext_resource type="Texture2D" uid="uid://lb2t8y12mi3" path="res://textures/Bullet.png" id="2_2hto7"]
+[ext_resource type="Script" path="res://weapon/scripts/bullet.gd" id="1_ljbnc"]
+[ext_resource type="Texture2D" uid="uid://lb2t8y12mi3" path="res://textures/Bullet.png" id="2_uode6"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_liekd"]
 radius = 2.0
@@ -11,7 +11,7 @@ height = 4.0
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_2hto7")
+"texture": ExtResource("2_uode6")
 }],
 "loop": true,
 "name": &"default",
@@ -20,10 +20,10 @@ animations = [{
 
 [node name="Bullet" type="Area2D"]
 collision_layer = 0
-collision_mask = 258
+collision_mask = 0
 monitorable = false
-script = ExtResource("1_kytww")
-speed = 100
+script = ExtResource("1_ljbnc")
+speed = 200
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_liekd")

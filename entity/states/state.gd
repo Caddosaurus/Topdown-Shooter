@@ -1,6 +1,6 @@
 class_name State extends Node
 
-# Stores the owner of the state machine
+# opposition is the non-self collider in a collision, I guess? Not really sure how to explain it.
 var entity: Entity
 var opposition: Entity
 var state_machine: StateMachine

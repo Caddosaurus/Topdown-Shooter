@@ -2,6 +2,7 @@ extends Node2D
 
 @onready var player = $".."
 
+# Update the interactions node to be pointing the right way for things like hitbox and gun
 func update_direction(new_direction: Vector2):
 	match new_direction:
 		Vector2.DOWN:
